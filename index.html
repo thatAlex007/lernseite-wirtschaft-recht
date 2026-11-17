@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lernseite Test 17.11.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday: a calm study binder for the night before a test
+   IDEA a ring binder with coloured register tabs: blue = Marketing, orange = Führung, teal = Motivation, ink = Fälle/Training
+   PICTURE start: the "Teststoff-Landkarte" with progress per topic; inside: live models (Grid, Reifegrad, Tannenbaum, Hackman) drawn large
+   COLOUR white paper, near-black ink, register blue #1d5fbf, orange #c2410c, teal #0f7b6c
+   TYPE Source Serif 4 for titles + Inter for text
+   LAYOUT tabs on one scrolling row, content max 1100px; two columns from 760px, one column on phones */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#121417);--ink:light-dark(#15191e,#e9ebee);--mute:light-dark(#57606a,#a3abb4);
+--line:light-dark(#dfe3e8,#2b3138);--soft:light-dark(#f4f6f8,#1a1e23);
+--mk:light-dark(#1d5fbf,#72a6f2);--mks:light-dark(#e8f0fb,#17263b);
+--fu:light-dark(#c2410c,#f2905f);--fus:light-dark(#fcefe8,#36231a);
+--mo:light-dark(#0f7b6c,#4fc4b2);--mos:light-dark(#e5f4f1,#13302b);
+--ok:light-dark(#137a3a,#5fd38a);--oks:light-dark(#e6f5ec,#15301f);
+--bad:light-dark(#b42318,#ff8a80);--bads:light-dark(#fdecea,#3a1b19)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Source Serif 4",Georgia,serif;line-height:1.1;letter-spacing:-.01em;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5vw,46px)}
+h2{font-size:clamp(26px,3.6vw,34px);margin:8px 0 6px}
+h3{font-size:21px;margin:30px 0 10px}
+p{margin:8px 0}
+.wrap{max-width:1100px;margin:0 auto;padding:0 max(4vw,16px)}
+header{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:5}
+.top{display:flex;gap:16px;align-items:baseline;flex-wrap:wrap;padding-top:14px}
+.top h1{font-size:22px}
+.top span{color:var(--mute);font-size:14px}
+nav{display:flex;gap:4px;overflow-x:auto;padding:10px 0 0;scrollbar-width:none}
+nav a{flex:none;text-decoration:none;color:var(--ink);padding:10px 14px;border-radius:8px 8px 0 0;font-weight:600;font-size:15px;border:1px solid transparent;border-bottom:0}
+nav a[aria-current=page]{border-color:var(--line);background:var(--soft)}
+nav a i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:7px;vertical-align:1px;font-style:normal}
+main{padding:28px 0 80px}
+.view{display:none}.view.on{display:block}
+.lead{font-size:18px;color:var(--mute);max-width:65ch}
+.grid2{display:grid;gap:20px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:760px){.grid2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.box{border:1px solid var(--line);border-radius:12px;padding:18px 20px;background:var(--bg)}
+.box.t{background:var(--soft);border-color:transparent}
+.def{border-radius:12px;padding:16px 20px;margin:12px 0;font-size:17px}
+.mk .def{background:var(--mks)}.fu .def{background:var(--fus)}.mo .def{background:var(--mos)}
+.def b{display:block;font-size:13px;color:var(--mute);font-weight:600;margin-bottom:2px}
+.ex{border-left:3px solid var(--line);padding:4px 0 4px 14px;margin:12px 0;color:var(--ink)}
+.ex b:first-child{color:var(--mute);font-size:13px;display:block}
+.trap{background:var(--bads);border-radius:12px;padding:12px 18px;margin:12px 0}
+.trap b{color:var(--bad)}
+.tag{display:inline-block;font-size:13px;font-weight:600;padding:2px 9px;border-radius:20px;background:var(--soft);color:var(--mute);margin-right:6px}
+.mk .acc{color:var(--mk)}.fu .acc{color:var(--fu)}.mo .acc{color:var(--mo)}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:10px 0}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--mute);font-weight:600}
+td:first-child{font-weight:600}
+ul,ol{padding-left:22px;margin:8px 0}li{margin:3px 0}
+button,.btn{font:600 15px Inter,system-ui,sans-serif;min-height:44px;padding:9px 16px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+button:hover{background:var(--soft)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--mk);outline-offset:2px}
+button.pri{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+input[type=number],select{font:16px Inter,system-ui,sans-serif;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);width:9em;min-height:44px}
+input[type=range]{width:100%;accent-color:var(--ink);min-height:32px}
+details{border:1px solid var(--line);border-radius:12px;padding:0 18px;margin:10px 0}
+details[open]{padding-bottom:14px}
+summary{cursor:pointer;font-weight:600;padding:14px 0;min-height:44px}
+.ans{background:var(--oks);border-radius:10px;padding:10px 14px;margin-top:6px}
+/* start map */
+.map{display:grid;gap:16px;grid-template-columns:minmax(0,1fr);margin-top:22px}
+@media(min-width:760px){.map{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.reg{border-radius:14px;padding:18px;color:var(--ink)}
+.reg.mk{background:var(--mks)}.reg.fu{background:var(--fus)}.reg.mo{background:var(--mos)}
+.reg h3{margin:0 0 4px}
+.reg a{display:flex;justify-content:space-between;gap:10px;text-decoration:none;color:var(--ink);padding:9px 0;border-bottom:1px solid color-mix(in srgb,var(--ink) 12%,transparent)}
+.reg a:last-of-type{border:0}
+.reg a span{color:var(--mute);font-size:13px;white-space:nowrap}
+.meter{height:10px;border-radius:6px;background:color-mix(in srgb,var(--ink) 10%,transparent);overflow:hidden;margin:8px 0 12px}
+.meter div{height:100%;border-radius:6px;transition:width .4s}
+.mk .meter div{background:var(--mk)}.fu .meter div{background:var(--fu)}.mo .meter div{background:var(--mo)}
+.plan{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;margin-top:10px}
+.plan b{font-size:20px;font-family:"Source Serif 4",Georgia,serif;white-space:nowrap}
+/* sort games */
+.sort .it{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;padding:10px 0;border-bottom:1px solid var(--line)}
+@media(min-width:760px){.sort .it{grid-template-columns:minmax(0,1fr) auto;align-items:center}}
+.sort .it .row button{min-height:40px;padding:6px 12px;font-size:14px}
+.sort .it.r{background:var(--oks)}.sort .it.w{background:var(--bads)}
+.sort .it{padding-inline:8px;border-radius:8px}
+.sort .fb{font-size:14px;color:var(--mute)}
+.score{font-weight:700}
+/* grid model */
+.fig{position:relative;min-height:360px}.fig>svg{position:absolute;inset:0;width:100%;height:100%}
+svg text{font:13px Inter,system-ui,sans-serif;fill:var(--ink)}
+.pt{cursor:pointer}
+/* steps */
+.steps{list-style:none;padding:0;counter-reset:s}
+.steps li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.steps li::before{counter-increment:s;content:counter(s);width:36px;height:36px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-weight:700}
+.steps li.hot::before{background:var(--mk);color:#fff}
+.steps li small{color:var(--mute);display:block}
+/* tree */
+.tree{display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:760px){.tree{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.tree .col{border-radius:12px;padding:14px 16px;background:var(--mks)}
+.tree .sub{display:grid;gap:10px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);margin-top:10px}
+.tree .sub div{background:var(--bg);border-radius:10px;padding:10px 12px;font-size:15px}
+/* flashcards */
+.card{min-height:260px;border-radius:16px;border:1px solid var(--line);display:grid;place-items:center;text-align:center;padding:28px;cursor:pointer;font-size:20px;background:var(--soft);user-select:none}
+.card.back{background:var(--oks);font-size:17px;text-align:left;place-items:center start}
+.card small{display:block;color:var(--mute);font-size:13px;margin-bottom:8px;text-align:center}
+/* quiz */
+.q{font-size:19px;font-weight:600;margin:14px 0}
+.opts{display:grid;gap:8px}
+.opts button{text-align:left;font-weight:500}
+.opts button.r{background:var(--oks);border-color:var(--ok)}
+.opts button.w{background:var(--bads);border-color:var(--bad)}
+.expl{margin-top:12px;padding:12px 16px;border-radius:10px;background:var(--soft)}
+.bar{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--mute)}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(9em,1fr));gap:12px;margin:12px 0}
+.kv div{background:var(--soft);border-radius:10px;padding:12px}
+.kv b{display:block;font-size:26px;font-family:"Source Serif 4",Georgia,serif}
+.chk label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.chk input{width:20px;height:20px;margin-top:3px;flex:none;accent-color:var(--ink)}
+.chain{display:grid;gap:8px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:760px){.chain{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.chain div{background:var(--mos);border-radius:10px;padding:12px}
+.chain b{display:block}
+@media(max-width:600px){table{font-size:13px}th,td{padding:6px 4px}.stack thead{display:none}.stack tr{display:grid;padding-block:8px;border-bottom:1px solid var(--line)}.stack td{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:8px;border:0;padding:3px 0}.stack td::before{content:attr(data-l);color:var(--mute);font-weight:600}.card{font-size:18px;padding:20px}}
+@media(max-width:600px){.top span{display:none}.top{padding-top:10px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+<div class="top"><h1>Lernseite Wirtschaft &amp; Recht</h1><span>Test am Di, 17.11.2026 · Marketing + Führung &amp; Motivation</span></div>
+<nav id="nav">
+<a href="#start"><i style="background:var(--ink)"></i>Start</a>
+<a href="#marketing"><i style="background:var(--mk)"></i>Marketing</a>
+<a href="#fuehrung"><i style="background:var(--fu)"></i>Führung</a>
+<a href="#stile"><i style="background:var(--fu)"></i>Führungsstile</a>
+<a href="#motivation"><i style="background:var(--mo)"></i>Motivation</a>
+<a href="#faelle"><i style="background:var(--ink)"></i>Fälle lösen</a>
+<a href="#quiz"><i style="background:var(--ink)"></i>Quiz</a>
+<a href="#karten"><i style="background:var(--ink)"></i>Karteikarten</a>
+<a href="#check"><i style="background:var(--ink)"></i>Checkliste</a>
+</nav>
+</div>
+</header>
+
+<main class="wrap">
+
+<!-- ================= START ================= -->
+<section class="view" id="v-start">
+<h2>Dein Teststoff auf einer Seite</h2>
+<p class="lead">Drei Register, ein Ziel: Alles verstehen, nicht nur auswendig lernen. Hak in der Checkliste ab, was du kannst, dann füllen sich die Balken.</p>
+<div class="map" id="map"></div>
+<div class="grid2" style="margin-top:22px">
+<div class="box t">
+<h3 style="margin-top:0">Lernplan für heute Abend</h3>
+<div class="plan">
+<b>25 min</b><div>Marketing durchlesen, Sortier-Übungen machen (Nutzen, Primär/Sekundär)</div>
+<b>30 min</b><div>Führung + Führungsstile: Grid und Reifegrad am Modell durchklicken</div>
+<b>25 min</b><div>Motivation: Herzberg-Übung, bis du 100 % hast</div>
+<b>30 min</b><div>Fälle lösen: 3 Fälle selbst schreiben, dann mit Lösung vergleichen</div>
+<b>15 min</b><div>Quiz komplett, falsche Antworten nochmal nachlesen</div>
+<b>morgen früh</b><div>Karteikarten + Fangfallen</div>
+</div>
+</div>
+<div class="box">
+<h3 style="margin-top:0">Was genau kommt?</h3>
+<p><b class="acc" style="color:var(--mk)">Marketing:</b> Folien 3, 4, 6, 9, 10 und die drei Arbeitsaufgaben (23.9., 30.9., 4.11.).</p>
+<p><b style="color:var(--fu)">Führung &amp; Motivation:</b> Grundlagen, Führungsstile und Konzepte, Motivationstheorien. Im Test musst du vor allem <b>Fälle lösen</b>: Problem benennen, Modell zuordnen, Mittel ableiten.</p>
+<p style="color:var(--mute);font-size:14px">Mit „Zusatz“ markierte Beispiele stehen nicht auf den Folien. Sie helfen nur beim Verstehen.</p>
+</div>
+</div>
+</section>
+
+<!-- ================= MARKETING ================= -->
+<section class="view mk" id="v-marketing">
+<span class="tag">Folie 3, 4, 6, 8, 9, 10</span><span class="tag">AA 23.9. · 30.9. · 4.11.</span>
+<h2>Marketing</h2>
+<p class="lead">Marketing heißt: Das Unternehmen denkt vom Kunden aus. Alles auf dieser Seite hängt an dieser einen Idee.</p>
+
+<h3 id="m-nutzen">1. Kundennutzen → Produktnutzen <span class="tag">Folie 3 · AA 23.9.</span></h3>
+<p>Jedes Produkt hat einen <b>Grundnutzen</b>. Alles darüber hinaus ist <b>Zusatznutzen</b>. Der Zusatznutzen hat zwei Unterarten: <b>Erbauungsnutzen</b> und <b>Geltungsnutzen</b>.</p>
+<div class="grid2">
+<div>
+<div class="def"><b>Grundnutzen</b>die aus den technisch-funktionalen Basiseigenschaften eines Produktes resultierende Bedürfnisbefriedigung. Folie: Transport von A nach B</div>
+<div class="def"><b>Zusatznutzen</b>geht über den Grundnutzen hinaus. Folie: Fahrspaß</div>
+<div class="def"><b>Erbauungsnutzen (Teil des Zusatznutzens)</b>ästhetische Wirkung eines Produktes. Folie: sportliches Design</div>
+<div class="def"><b>Geltungsnutzen (Teil des Zusatznutzens)</b>soziale Wirkung eines Produktes. Folie: soziale Anerkennung durch Kauf des teuren, exklusiven Autos</div>
+</div>
+<div class="box">
+<p style="margin-top:0"><b>Beispiel wählen:</b></p>
+<div class="row" id="nutzenBtns"></div>
+<div class="scroll"><table id="nutzenTab"></table></div>
+<p style="font-size:14px;color:var(--mute)" id="nutzenNote"></p>
+</div>
+</div>
+<div class="trap"><b>Merke:</b> Erbauung = <b>ich selbst</b> finde es schön (ästhetisch). Geltung = <b>die anderen</b> sehen es (sozial). Fahrspaß ist Zusatznutzen, kein Grundnutzen.</div>
+<div class="box sort" id="sortNutzen"></div>
+
+<h3 id="m-usp">2. USP – Unique Selling Proposition <span class="tag">Folie 4 · AA 30.9.</span></h3>
+<div class="grid2">
+<div class="scroll"><table class="stack">
+<thead><tr><th>Frage</th><th>Antwort</th></tr></thead>
+<tbody>
+<tr><td>Abkürzung</td><td>Unique Selling Proposition</td></tr>
+<tr><td>wörtlich</td><td>„einzigartiger Verkaufsvorschlag“</td></tr>
+<tr><td>im Marketing</td><td>„unverwechselbares Nutzenangebot“</td></tr>
+<tr><td>auch</td><td>„Alleinstellungsmerkmal“</td></tr>
+<tr><td>Rolle</td><td><b>ein (!) möglicher</b> Ansatz der Produkt- bzw. Markenpositionierung</td></tr>
+<tr><td>Fokus</td><td>auf dem <b>wichtigsten Nutzen</b> einer Marke</td></tr>
+</tbody></table></div>
+<div>
+<div class="def"><b>Positionierung</b>Das Angebot so gestalten, dass es im Bewusstsein des Zielkunden einen <b style="display:inline;font-size:inherit;color:inherit">besonderen, geschätzten</b> und <b style="display:inline;font-size:inherit;color:inherit">von Wettbewerbern abgesetzten</b> Platz einnimmt.</div>
+<p>Stell dir vor, im Kopf des Kunden gibt es ein Regal. Positionierung heißt: Deine Marke bekommt dort ein eigenes Fach, das niemand anderer hat.</p>
+</div>
+</div>
+<div class="scroll"><table class="stack">
+<thead><tr><th>Marke</th><th>USP</th><th>Quelle</th></tr></thead>
+<tbody>
+<tr><td>Red Bull</td><td>Energie („verleiht Flügel“)</td><td>Folie</td></tr>
+<tr><td>Volvo</td><td>Sicherheit</td><td>Beispiel aus der AA</td></tr>
+<tr><td>Duolingo</td><td>Sprache gratis und spielerisch lernen (Streaks, Levels)</td><td>deine AA</td></tr>
+<tr><td>Dyson</td><td>Staubsauger ohne Beutel, Saugkraft lässt nicht nach</td><td>Zusatz</td></tr>
+<tr><td>M&amp;M’s</td><td>„schmilzt im Mund, nicht in der Hand“, das klassische Lehrbuch-USP</td><td>Zusatz</td></tr>
+<tr><td>IKEA</td><td>schönes Design zum kleinen Preis, weil man selbst aufbaut</td><td>Zusatz</td></tr>
+</tbody></table></div>
+<div class="trap"><b>Fangfalle:</b> Der USP ist <b>ein möglicher</b> Ansatz der Positionierung, nicht <b>der</b> Ansatz. Bei „Produkt deiner Wahl“ nie ein Folienprodukt nehmen (Auto, Red Bull, Coca-Cola, Swatch, iPhone, Big Mac, Axe, Nike).</div>
+
+<h3 id="m-markt">3. Marketing und Markt <span class="tag">Folie 6 · AA 30.9.</span></h3>
+<div class="def"><b>Marketing</b>= marktorientierte Unternehmensführung. Das Unternehmen richtet alle Entscheidungen am Markt aus, also an den Bedürfnissen der Kunden. Marketing ist mehr als Werbung.</div>
+<div class="def"><b>Markt</b>= Zusammentreffen von Angebot und Nachfrage.</div>
+<div class="scroll"><table>
+<thead><tr><th></th><th>Angebot</th><th>Nachfrage</th></tr></thead>
+<tbody><tr><td>Verkäufer</td><td>Waren/Dienstleistungen</td><td>Geld</td></tr>
+<tr><td>Käufer</td><td>Geld</td><td>Waren/Dienstleistungen</td></tr></tbody></table></div>
+<p style="font-size:15px;color:var(--mute)">Trick: Jeder bietet das an, was er hat, und fragt nach dem, was er will. Der Bäcker bietet Semmeln an und will Geld. Du bietest Geld an und willst Semmeln.</p>
+
+<div class="box t">
+<p style="margin-top:0"><b>Warum betreiben Unternehmen Marketing?</b> (Frage aus der AA, in 4 Schritten)</p>
+<ol>
+<li>Ressourcen sind auf <b>beiden</b> Seiten begrenzt: Verkäufer haben begrenzte Produktionskapazitäten, Käufer ein begrenztes Einkommen.</li>
+<li>Der Engpass liegt <b>nicht</b> bei den Produktionskapazitäten, denn es gibt ein riesiges Angebot an Waren und Dienstleistungen.</li>
+<li>Der Engpass liegt beim <b>Absatzmarkt</b> (Käufermarkt).</li>
+<li>Deshalb müssen sich die Anbieter am Markt orientieren: <b>Marktorientierung der Anbieter</b>.</li>
+</ol>
+</div>
+
+<p><b>Käufermarkt oder Verkäufermarkt?</b> Schieb den Regler.</p>
+<div class="box">
+<label for="mktSl" style="font-size:14px;color:var(--mute)">links: viel Angebot · rechts: viel Nachfrage</label>
+<input type="range" id="mktSl" min="0" max="100" value="25">
+<div class="grid2" id="mktOut"></div>
+</div>
+<div class="scroll"><table class="stack">
+<thead><tr><th></th><th>Käufermarkt</th><th>Verkäufermarkt</th></tr></thead>
+<tbody>
+<tr><td>Verhältnis</td><td>Angebot &gt; Nachfrage</td><td>Nachfrage &gt; Angebot</td></tr>
+<tr><td>Stärkere Position</td><td>Käufer</td><td>Verkäufer</td></tr>
+<tr><td>Engpass</td><td>beim Absatz</td><td>bei der Produktion</td></tr>
+<tr><td>Beispiel (Zusatz)</td><td>Smartphones, Supermarkt, Kleidung</td><td>Mietwohnungen in Wien, Konzertkarten, Nachkriegszeit</td></tr>
+</tbody></table></div>
+<div class="trap"><b>Merkhilfe:</b> Der Markt heißt nach der Seite, die <b>stärker</b> ist. Käufermarkt = der Käufer ist der Chef, darum braucht man Marketing.</div>
+
+<h3 id="m-prozess">4. Marketing als Managementprozess <span class="tag">Folie 8 · nur über AA 4.11.</span></h3>
+<p>Die AA fragt nach <b>Schritt 2 (Prognose)</b> und <b>Schritt 5 (Marketing-Mix)</b>. Die sind blau markiert.</p>
+<ol class="steps">
+<li><div><b>Situationsanalyse</b><small>Wo stehen wir?</small></div></li>
+<li class="hot"><div><b>Prognose</b><small>Wohin geht die Entwicklung? Das Unternehmen schätzt ab, wie sich der Markt in Zukunft entwickelt.</small></div></li>
+<li><div><b>Marketingziele</b><small>Was wollen wir erreichen?</small></div></li>
+<li><div><b>Marketingstrategien</b><small>Welche Stoßrichtungen bei Marktwahl und Marktbearbeitung?</small></div></li>
+<li class="hot"><div><b>Marketing-Mix (operative Marketingplanung)</b><small>Welche Marketingmaßnahmen ergreifen wir? Kombination aus Produkt, Preis, Distribution, Kommunikation.</small></div></li>
+<li><div><b>Marketing-Implementierung (Realisation)</b><small>Wer (welche Abteilung) setzt welche Marketingaktivitäten um?</small></div></li>
+<li><div><b>Marketing-Controlling</b><small>Ziel erreicht? Ursachen für Soll-Ist-Abweichungen? Welche Anpassungen?</small></div></li>
+</ol>
+<div class="ex"><b>Zusatz-Beispiel: ein Bubble-Tea-Laden in Wien</b>1 Situation: Wir verkaufen 200 Becher am Tag. · 2 Prognose: Im Sommer steigt die Nachfrage, ein Konkurrent eröffnet nebenan. · 3 Ziel: 20 % mehr Umsatz bis August. · 4 Strategie: Schüler als Zielgruppe. · 5 Mix: neue Sorte, Schülerrabatt, Stand vor der Schule, TikTok-Werbung. · 6 Umsetzung: Filialleiterin macht Rabatt, Praktikant macht TikTok. · 7 Controlling: Nur +12 %? Warum? Anpassen.</div>
+<div class="scroll"><table class="stack">
+<thead><tr><th>Marketing-Mix (4 P)</th><th>Frage</th><th>Beispiel Bubble-Tea (Zusatz)</th></tr></thead>
+<tbody>
+<tr><td>Produkt (Product)</td><td>Was bieten wir an?</td><td>neue Sorte Mango-Matcha</td></tr>
+<tr><td>Preis (Price)</td><td>Zu welchem Preis, welche Rabatte?</td><td>Schülerrabatt 1 €</td></tr>
+<tr><td>Distribution (Place)</td><td>Wie kommt es zum Kunden?</td><td>Stand vor der Schule, Lieferservice</td></tr>
+<tr><td>Kommunikation (Promotion)</td><td>Wie machen wir es bekannt?</td><td>TikTok, Plakate, Gratis-Probe</td></tr>
+</tbody></table></div>
+<p style="font-size:15px">Wichtig: Die vier Bereiche müssen zusammenpassen. Ein Luxusprodukt passt nicht zu einem Billigpreis beim Diskonter.</p>
+
+<h3 id="m-mafo">5. Marktforschung <span class="tag">Folie 9 · AA 4.11.</span></h3>
+<div class="def"><b>Wozu?</b>Marktforschung liefert Informationen über den Markt, vor allem über <b style="display:inline;font-size:inherit;color:inherit">Abnehmer und Konkurrenz</b>. Sie ist Teil der <b style="display:inline;font-size:inherit;color:inherit">Situationsanalyse und der Prognose</b> und damit Grundlage für Marketing-Entscheidungen (Fakten statt Vermutungen).</div>
+<p>Was wird untersucht? Merkhilfe <b>M-K-R-M: „Meine Katze riecht Mäuse“</b></p>
+<div class="scroll"><table class="stack">
+<thead><tr><th>Bereich</th><th>Beispiele (Folie)</th><th>Zusatz-Beispiel</th></tr></thead>
+<tbody>
+<tr><td>Merkmale der gegenwärtigen und potenziellen Abnehmer</td><td>Geschlecht, Alter, Beruf, Einkommen</td><td>Wie alt sind unsere Kunden? 15–25?</td></tr>
+<tr><td>Kaufmotive</td><td>Gebrauchswert, Design, Prestige</td><td>Kaufen sie wegen Geschmack oder weil es auf Instagram gut aussieht?</td></tr>
+<tr><td>Reaktion auf Marketingmaßnahmen</td><td>Erhöht Werbung den Bekanntheitsgrad? Preis günstig oder überhöht?</td><td>Kamen nach der TikTok-Werbung mehr Kunden?</td></tr>
+<tr><td>Marktanteil (in %)</td><td>absolut; relativ = im Verhältnis zum größten Konkurrenten</td><td>siehe Rechner unten</td></tr>
+</tbody></table></div>
+<p style="font-size:15px">Die Kaufmotive passen zu den Nutzenarten: Gebrauchswert ≈ Grundnutzen, Design ≈ Erbauungsnutzen, Prestige ≈ Geltungsnutzen.</p>
+<div class="box">
+<p style="margin-top:0"><b>Marktanteil-Rechner</b> <span class="tag">Zusatz</span></p>
+<div class="row">
+<label>Gesamtmarkt (Mio. €)<br><input type="number" id="ma1" value="100" min="1"></label>
+<label>eigener Umsatz<br><input type="number" id="ma2" value="20" min="0"></label>
+<label>größter Konkurrent<br><input type="number" id="ma3" value="40" min="0"></label>
+</div>
+<div class="kv" id="maOut"></div>
+<p style="font-size:14px;color:var(--mute);margin:0" id="maTxt"></p>
+</div>
+<div class="trap"><b>Fangfalle:</b> Relativer Marktanteil = im Verhältnis zum <b>größten Konkurrenten</b>, nicht zum Gesamtmarkt. Untersucht werden <b>gegenwärtige und potenzielle</b> Abnehmer.</div>
+
+<h3 id="m-methoden">6. Methoden der Marktforschung <span class="tag">Folie 10</span></h3>
+<div class="tree">
+<div class="col"><b>Primärforschung</b><br>Daten werden <b>eigens auf dem Markt erhoben</b> (aus erster Hand, neu)
+<div class="sub"><div><b>einmalige Erhebung</b><br>Befragung<br>Beobachtung<br>Experiment</div><div><b>laufende Erhebung</b><br>Panelverfahren</div></div></div>
+<div class="col"><b>Sekundärforschung</b><br>Auswertung <b>bereits vorhandener Daten</b> (aus zweiter Hand)
+<div class="sub"><div><b>firmeninterne Daten</b><br>zB: Welche Produkte werden mehr, welche weniger verkauft?</div><div><b>externe Daten</b><br>zB: Einkommensentwicklung in einer bestimmten Region</div></div></div>
+</div>
+<details><summary>Kurz erklärt: Befragung, Beobachtung, Experiment, Panel (Folien 11–14, kein Teststoff)</summary>
+<p><b>Befragung:</b> Personen werden gefragt. Persönlich (hohe Antwortquote, aber teuer, nicht anonym), telefonisch (rasch, günstig), schriftlich (günstig, aber geringe Rücklaufquote), online (keine Portokosten, aber manche Gruppen nicht erreichbar).</p>
+<p><b>Beobachtung:</b> Verhalten in einer <b>nicht künstlich veränderten</b> Situation, zB welche Regale Kunden im Supermarkt beachten.</p>
+<p><b>Experiment:</b> <b>künstlich hergestellte oder veränderte</b> Situation. Labor: Versuchspersonen wählen die schönste Verpackung. Feld: Waren im Supermarkt anders platzieren.</p>
+<p><b>Panel:</b> gleichbleibende Gruppe, der regelmäßig die gleichen Fragen gestellt werden, zB Haushalte notieren jeden Monat ihre Einkäufe.</p>
+</details>
+<div class="box sort" id="sortMethod"></div>
+
+<h3>Die Fragen aus den Arbeitsaufgaben</h3>
+<p>Erst selbst im Kopf beantworten, dann aufklappen.</p>
+<div id="aaList"></div>
+</section>
+
+<!-- ================= FÜHRUNG GRUNDLAGEN ================= -->
+<section class="view fu" id="v-fuehrung">
+<span class="tag">Folien Führung · Buch Kapitel 4</span>
+<h2>Führung: Grundlagen</h2>
+<div class="def"><b>Führung (Lutz von Rosenstiel)</b>„zielbezogene Beeinflussung von Unterstellten durch Vorgesetzte mithilfe von Kommunikationsmitteln“</div>
+<div class="grid2">
+<div class="box t"><b>Management</b> = eher Sachliches: Planung, Organisation, Kontrolle.<br><b>Führen</b> = die Menschen: Mitarbeitende beeinflussen, unterstützen, Potenziale entwickeln.</div>
+<div class="box t"><b>Boss vs. Leader:</b> Der Boss sitzt oben und zeigt, wohin. Der Leader geht vorne mit und zieht mit. Ein guter Teamkapitän im Fußball ist ein Leader, kein Boss.</div>
+</div>
+
+<h3>Was macht eine gute Führungskraft aus? Die 4 Kompetenzen</h3>
+<p>Zusammen ergeben sie die <b>Handlungskompetenz</b>.</p>
+<div class="scroll"><table class="stack">
+<thead><tr><th>Kompetenz</th><th>Beispiele (Folie)</th><th>Merksatz (Zusatz)</th></tr></thead>
+<tbody>
+<tr><td>Fachkompetenz</td><td>fachliche Kenntnisse, selbstständige Arbeitsweise, Fähigkeit zur Ergebnisbeurteilung</td><td>Ich <b>weiß</b> es.</td></tr>
+<tr><td>Methodenkompetenz</td><td>Beherrschung von Arbeitstechniken, Denkmethoden, Planungsmethoden</td><td>Ich weiß, <b>wie</b> ich vorgehe.</td></tr>
+<tr><td>Sozialkompetenz</td><td>Teamfähigkeit, Kooperation, Konfliktbewältigung, Fairness, Empathie, Kommunikationskompetenz</td><td>Ich kann mit <b>anderen</b>.</td></tr>
+<tr><td>Selbstkompetenz</td><td>Leistungsbereitschaft, Flexibilität, Eigeninitiative, Selbstkritik, Sorgfalt, Zuverlässigkeit</td><td>Ich kann mit <b>mir selbst</b>.</td></tr>
+</tbody></table></div>
+
+<h3>Führungsaufgaben</h3>
+<p>Mitarbeitende auswählen, beurteilen, entwickeln, fördern · Ziele vereinbaren · planen, organisieren · Entscheidungen treffen · delegieren, koordinieren, kontrollieren · informieren · Problemfindung · repräsentieren</p>
+
+<h3>Die 10 Management-Rollen nach Mintzberg</h3>
+<p>So sieht der Alltag eines Managers wirklich aus. Beispiel jeweils: eine Primarärztin, die eine Station leitet (Zusatz).</p>
+<div class="scroll"><table class="stack">
+<thead><tr><th>Rolle</th><th>Bedeutung</th><th>Beispiel Station</th></tr></thead>
+<tbody id="mintz"></tbody></table></div>
+
+<h3>Mitarbeiterführung im Wandel der Zeit</h3>
+<ol class="steps">
+<li><div><b>1909 Wissenschaftliches Management (Frederick W. Taylor)</b><small>Effizienzsteigerung nach naturwissenschaftlich-technischen Prinzipien</small></div></li>
+<li><div><b>1922 Bürokratische Organisation (Max Weber)</b><small>Regeln, Hierarchie, Akten; auf der Folie: „Schwächen der Bürokratie“</small></div></li>
+<li><div><b>1933 Human Relations (Elton Mayo)</b><small>Die Mitarbeitenden und ihre Bedürfnisse stehen im Mittelpunkt</small></div></li>
+<li><div><b>1990 Lean Management (Womack, Jones, Roos)</b><small>effiziente Gestaltung aller Aktivitäten, Vermeidung von Verschwendung</small></div></li>
+</ol>
+<div class="grid2">
+<div class="box">
+<b>Taylor: „Scientific Management“</b> = wissenschaftliche Betriebsführung
+<ul>
+<li>Trennung von <b>Planung</b> (Management) und <b>Ausführung</b> (Arbeiter)</li>
+<li>weitgehende Arbeitsteilung, Spezialisierungsvorteile</li>
+<li>Kontrolle durch das Management</li>
+<li>Motivation durch <b>leistungsgerechte finanzielle Anreize</b></li>
+<li>Funktionsmeisterprinzip (funktionale Gliederung)</li>
+</ul>
+<div class="ex"><b>Zusatz-Beispiel</b>Fließband bei Ford oder heute ein Amazon-Lager: Jeder macht nur einen Handgriff, Lohn nach Stückzahl.</div>
+</div>
+<div class="box">
+<b>Max Weber: Bürokratie</b> als „Idealtypus für das Funktionieren großer Organisationen“
+<ol>
+<li>Regelgebundenheit der Amtsführung</li>
+<li>genau abgegrenzte Kompetenzbereiche</li>
+<li>Prinzip der Amtshierarchie (Instanzenzug)</li>
+<li>Aktenmäßigkeit der Verwaltung</li>
+<li>Unpersönlichkeit der Amtsführung</li>
+<li>definierte Qualifikationserfordernisse</li>
+<li>fixierte Laufbahnen inkl. Gehaltshierarchie</li>
+<li>Anstellung durch Arbeitsvertrag</li>
+</ol>
+<div class="ex"><b>Beispiel Krankenhaus</b>Hygienevorschriften (Regeln) · Primar → Oberarzt → Assistenzarzt (Hierarchie) · Patientendokumentation (Akten) · Facharztausbildung (Qualifikation) · Gehaltsschema (Laufbahn)</div>
+</div>
+</div>
+
+<h3>Macht</h3>
+<div class="scroll"><table class="stack">
+<thead><tr><th>Machtart (Folie)</th><th>woher?</th><th>Beispiel (Zusatz)</th></tr></thead>
+<tbody>
+<tr><td>Formelle Macht</td><td>aufgrund der Arbeitsstelle, zB Abteilungsleitung</td><td>Die Direktorin darf entscheiden, weil sie Direktorin ist.</td></tr>
+<tr><td>Macht durch Autorität</td><td>aufgrund von Kenntnissen/Eigenschaften der Person</td><td>Alle hören auf den erfahrenen Techniker, obwohl er kein Chef ist.</td></tr>
+<tr><td>Faktische Macht</td><td>ohne offizielle Berechtigung, zB Erpressung, Erschleichung</td><td>Ein Kollege droht, Fehler des Chefs auszuplaudern.</td></tr>
+</tbody></table></div>
+<p><b>6 Machtbasen (Buch):</b> Belohnung (Gehaltserhöhung) · Bestrafung (Versetzung) · Sachkenntnis (Experte) · Legitimation (Hierarchie) · Information (weiß mehr) · Vorbildwirkung (man will so sein wie sie)</p>
+</section>
+
+<!-- ================= FÜHRUNGSSTILE ================= -->
+<section class="view fu" id="v-stile">
+<h2>Führungsstile und Führungskonzepte</h2>
+<p class="lead">Es gibt keinen Stil, der immer passt. Gute Führung passt den Stil an die Situation und die Mitarbeitenden an.</p>
+
+<h3>Die 3 Grundstile</h3>
+<p>Von autoritär über kooperativ zu Laissez-faire wächst der <b>Freiraum der Mitarbeitenden</b>.</p>
+<div class="scroll"><table class="stack">
+<thead><tr><th>Stil</th><th>Vorteile</th><th>Nachteile</th><th>Auswirkungen</th></tr></thead>
+<tbody>
+<tr><td>autoritär<br><small style="font-weight:400;color:var(--mute)">Eigeninitiative wird unterbunden</small></td><td>klare Verantwortungsbereiche, schnelle Handlungsfähigkeit</td><td>distanziertes Verhältnis, keine Diskussion</td><td>hohe Aggressivität, geringe Leistung, wenig Spontanität</td></tr>
+<tr><td>kooperativ/ demokratisch<br><small style="font-weight:400;color:var(--mute)">Mitarbeitende im Entscheidungsprozess</small></td><td>Beteiligung an Entscheidungen, Eigenkontrolle, Motivation, Entlastung der Führungskraft</td><td>Durchsetzungsprobleme, Entscheidungsschwierigkeiten</td><td>niedrige Aggressivität, emotional „wärmer“, höhere Leistung</td></tr>
+<tr><td>Laissez-faire<br><small style="font-weight:400;color:var(--mute)">keine Zielorientierung, kaum Rückmeldung</small></td><td>hohe Entscheidungsfreiheit, individuelle Stärken werden gefördert</td><td>Orientierungslosigkeit, Hilflosigkeit, keine Zwänge</td><td>Unlust, Frustration, geringe Leistung</td></tr>
+</tbody></table></div>
+<p style="font-size:15px">Folienbilder: autoritär = Darth Vader, demokratisch = Nelson Mandela, Laissez-faire = Jack Sparrow.</p>
+<div class="ex"><b>Zusatz: wann passt welcher Stil?</b>Autoritär: Feueralarm, Stromausfall im OP, da zählt jede Sekunde. · Kooperativ: Team plant ein neues Projekt. · Laissez-faire: ein Team aus Top-Expertinnen, die genau wissen, was zu tun ist (aber selbst dann braucht es Ziele).</div>
+
+<h3>Tannenbaum/Schmidt: 7 Stufen</h3>
+<p>Je autoritärer, desto kleiner der Entscheidungsspielraum der Gruppe. Beispiel (Zusatz): Ein Klassenvorstand plant den Wien-Ausflug.</p>
+<div class="box">
+<input type="range" id="tsSl" min="1" max="7" value="1" aria-label="Stufe">
+<div id="tsOut"></div>
+</div>
+
+<h3>Die 5 Führungstheorien</h3>
+<div class="scroll"><table class="stack">
+<thead><tr><th>Theorie</th><th>Kernidee</th><th>Konzept dazu</th><th>Typischer Satz</th></tr></thead>
+<tbody>
+<tr><td>Eigenschaftstheorien</td><td>Persönlichkeitsmerkmale machen den Erfolg aus</td><td>Big Five</td><td>„Zum Führen ist man geboren.“</td></tr>
+<tr><td>Verhaltenstheorien</td><td>ein bestimmtes, gleichbleibendes Verhalten bzw. Stil</td><td>Managerial Grid, MbO, Tannenbaum/Schmidt</td><td>„Es kommt darauf an, wie man sich verhält.“</td></tr>
+<tr><td>Situationstheorien</td><td>Stil wird an die Situation angepasst</td><td>Reifegradansatz</td><td>„Es hängt von der Situation ab.“</td></tr>
+<tr><td>Interaktionstheorien</td><td>Wechselwirkung zwischen Personen, Team und Situation</td><td>LMX</td><td>„Führungskraft, Mitarbeitende, Gruppe und Aufgabe wirken zusammen.“</td></tr>
+<tr><td>Erwartungstheorien</td><td>Erfolg = die Führungskraft schafft es, das Team zu motivieren</td><td>Weg-Ziel-Ansatz</td><td>„Wer Ziele klar macht und Feedback gibt, ist erfolgreich.“</td></tr>
+</tbody></table></div>
+
+<h3>Big Five (OCEAN)</h3>
+<p>Diese Eigenschaften helfen, eine Führungsposition zu erreichen:</p>
+<div class="kv">
+<div><b>O</b>Offenheit<br><small>wissbegierig, fantasievoll</small></div>
+<div><b>C</b>Gewissenhaftigkeit<br><small>fleißig, zuverlässig, pünktlich</small></div>
+<div><b>E</b>Extraversion<br><small>aktiv, gesellig</small></div>
+<div><b>A</b>Verträglichkeit<br><small>verständnisvoll, empathisch</small></div>
+<div><b>N</b>emotionale Stabilität<br><small>ruhig, gelassen</small></div>
+</div>
+
+<h3>Managerial Grid (Blake/Mouton)</h3>
+<p>Zwei Dimensionen, jeweils 1 bis 9. <b>Erste Zahl = Aufgaben-/Leistungsorientierung</b> (x-Achse), <b>zweite Zahl = Mitarbeiterorientierung</b> (y-Achse). Ziel ist 9.9. Klick auf einen Punkt.</p>
+<div class="grid2">
+<div class="fig box" style="padding:0"><svg id="gridSvg" role="img" aria-label="Managerial Grid"></svg></div>
+<div class="box" id="gridInfo"></div>
+</div>
+<div class="trap"><b>Merke:</b> 9.1 = nur Leistung („Befehl-Gehorsam“), bringt nur kurzfristig Erfolg, weil sich die Mitarbeitenden gegen das Unternehmen wenden können. 1.9 = nur Mensch, nettes Klima, wenig Leistung. Mit Trainings kommt man Richtung 9.9.</div>
+
+<h3>Management by Objectives (MbO)</h3>
+<p>Partizipatives Konzept: <b>Ziele werden gemeinsam vereinbart</b>, die Führungskraft delegiert Aufgaben und Kompetenzen.</p>
+<ol class="steps">
+<li><div><b>Ziele gemeinsam vereinbaren</b><small>nicht vorgeben!</small></div></li>
+<li><div><b>Aufgaben und Kompetenzen delegieren</b><small>der Weg ist Sache der Mitarbeitenden</small></div></li>
+<li><div><b>Feedbackgespräch am Periodenende</b><small>Soll-Ist-Vergleich</small></div></li>
+<li><div><b>neue Ziele vereinbaren</b><small>der Kreislauf beginnt von vorne</small></div></li>
+</ol>
+<div class="grid2">
+<div class="box t"><b>Nutzen:</b> mehr Motivation und Leistung, höhere Zufriedenheit, Eigeninitiative, Effizienz, Entlastung der Führungskraft<br><br><b>Voraussetzungen:</b> klar abgegrenzte Aufgaben, Entscheidungsbefugnis, Mitarbeitende übernehmen Verantwortung</div>
+<div class="box t"><b>Fehlerquellen:</b> Ziele nicht gemeinsam oder ungenau festgelegt, falsch geschätzt, Zielkonflikte, Unvorhersehbares, Führungskraft mischt sich ein
+<div class="ex"><b>Zusatz-Beispiel MbO in der Schule</b>Du vereinbarst mit dem Lehrer: „Bis Ende Semester schaffe ich in Mathe einen Dreier.“ Wie du lernst, entscheidest du. Am Ende: Gespräch, ob es geklappt hat.</div></div>
+</div>
+
+<h3>Reifegradansatz (Hersey/Blanchard)</h3>
+<p>Je weniger reif die Mitarbeitenden für eine Aufgabe sind, desto <b>aufgabenbezogener</b> muss geführt werden. <b>Reife = Fähigkeit (können) + Motivation (wollen).</b></p>
+<div class="box">
+<div class="row" id="rgBtns"></div>
+<div id="rgOut" style="margin-top:12px"></div>
+</div>
+<div class="trap"><b>Nicht vertauschen:</b> M2 (will, kann nicht) → überzeugen. M3 (kann, will nicht) → partizipieren. Eselsbrücke: Wer nicht <b>kann</b>, braucht Erklärung. Wer nicht <b>will</b>, braucht Mitsprache.</div>
+
+<h3>LMX-Konzept (Leader-Member-Exchange)</h3>
+<p>Die Führungskraft baut zu jeder Person eine <b>eigene</b> Beziehung auf und hat meist eine kleine <b>In-Group</b>, oft Personen, die ihr ähnlich sind.</p>
+<div class="scroll"><table>
+<thead><tr><th>In-Group</th><th>Out-Group</th></tr></thead>
+<tbody>
+<tr><td style="font-weight:400">hohes gegenseitiges Vertrauen</td><td>nur formaler Kontakt</td></tr>
+<tr><td style="font-weight:400">viel Unterstützung, häufige Interaktion</td><td>sachlicher, distanzierter Umgang</td></tr>
+<tr><td style="font-weight:400">Belohnungen (Status, Beförderung)</td><td>wenig soziale Wertschätzung</td></tr>
+<tr><td style="font-weight:400">mehr Freiräume</td><td>weniger Einfluss, mehr Kontrolle</td></tr>
+</tbody></table></div>
+<div class="ex"><b>Zusatz-Beispiel</b>Ein Trainer nimmt nur seine drei Lieblingsspieler zur Taktikbesprechung mit. Der Rest erfährt alles erst beim Training. Folge: Die anderen fühlen sich unfair behandelt und strengen sich weniger an.</div>
+
+<h3>Weg-Ziel-Ansatz (Path-Goal)</h3>
+<p>Die Führungskraft ist <b>Wegbereiter/in</b>: Sie bringt die Ziele der Mitarbeitenden mit den Zielen der Organisation in Einklang und räumt Hindernisse aus dem Weg.</p>
+<div class="scroll"><table class="stack">
+<thead><tr><th>Stil</th><th>Was tut die Führungskraft?</th><th>Beispiel Homeoffice-Tag (Fall 8)</th></tr></thead>
+<tbody>
+<tr><td>direktiv</td><td>exakte Anweisungen, Regeln, Überwachung</td><td>Chef legt Tag und Regeln fest.</td></tr>
+<tr><td>unterstützend</td><td>auf Bedürfnisse achten, angenehme Atmosphäre</td><td>fragt nach Bedürfnissen, sorgt für Ausstattung</td></tr>
+<tr><td>partizipativ</td><td>Meinungen und Vorschläge einholen, dann entscheiden</td><td>Team bespricht Tag und Regeln, dann entscheidet er</td></tr>
+<tr><td>leistungsorientiert</td><td>anspruchsvolle Ziele, Vertrauen in die Leistung</td><td>setzt Ziele für den Tag, vertraut auf Leistung</td></tr>
+</tbody></table></div>
+
+<h3>Situatives Führen</h3>
+<p>Führungsarbeit wird beeinflusst durch: <b>Art der Organisation · Aufgabenstellung · Persönlichkeit der Mitarbeitenden · Persönlichkeit der Führungskraft</b> usw.</p>
+
+<h3>Führungsinstrumente (Folie 35) = deine „Mittel“ im Fall</h3>
+<div class="row" style="gap:6px">
+<span class="tag">Kommunikation</span><span class="tag">Zielvereinbarung</span><span class="tag">Überwachung</span><span class="tag">Delegation</span><span class="tag">Anleitung und Einarbeitung</span><span class="tag">Feedback</span><span class="tag">Motivation</span><span class="tag">Entscheidung</span><span class="tag">Konfliktlösung</span><span class="tag">Moderation</span><span class="tag">Information</span><span class="tag">Coaching</span><span class="tag">Mitarbeitergespräch</span>
+</div>
+</section>
+
+<!-- ================= MOTIVATION ================= -->
+<section class="view mo" id="v-motivation">
+<h2>Motivation</h2>
+<div class="def"><b>Motivation</b>der innere Antrieb, etwas zu tun (lat. movere = bewegen). Motivierte Mitarbeitende leisten mehr als unzufriedene.</div>
+<div class="grid2">
+<div class="box t"><b>intrinsisch (von innen)</b><br>Freude und Interesse an der Arbeit, Gestaltungsmöglichkeiten, Ehrgeiz<div class="ex"><b>Zusatz</b>Du programmierst am Wochenende, weil es dir Spaß macht.</div></div>
+<div class="box t"><b>extrinsisch (von außen)</b><br>Beförderung, Gehaltserhöhung, Anerkennung durch andere (Lob)<div class="ex"><b>Zusatz</b>Du lernst für den Test, weil es sonst einen Fünfer gibt.</div></div>
+</div>
+<p><b>Inhaltstheorien</b> fragen: <b>Was</b> treibt Menschen an? → ERG, Herzberg, McClelland, Hackman/Oldham<br><b>Prozesstheorien</b> fragen: <b>Wie</b> läuft Motivation ab? → Porter/Lawler</p>
+
+<h3>ERG-Theorie (Alderfer)</h3>
+<p>Weiterentwicklung von Maslow, aber nur 3 Bedürfnisklassen und <b>keine Stufenpyramide</b>: alle wirken gleichzeitig.</p>
+<div class="scroll"><table class="stack">
+<thead><tr><th>Klasse</th><th>Inhalt</th><th>Beispiel im Job (Zusatz)</th></tr></thead>
+<tbody>
+<tr><td>E – Existenz</td><td>Lohn, physiologische Bedürfnisse, Arbeitsbedingungen</td><td>faires Gehalt, Pausenraum, sicherer Arbeitsplatz</td></tr>
+<tr><td>R – Relatedness/Beziehung</td><td>Zugehörigkeit, Wertschätzung</td><td>nettes Team, gemeinsames Mittagessen</td></tr>
+<tr><td>G – Growth/Wachstum</td><td>Selbstverwirklichung, persönliche Weiterentwicklung</td><td>Weiterbildung, neue Projekte, Verantwortung</td></tr>
+</tbody></table></div>
+<p><b>Regeln:</b> Je weniger Existenz- oder Beziehungsbedürfnisse erfüllt sind, desto <b>stärker</b> werden sie. Fehlen Beziehungen, spürt man auch die Existenzbedürfnisse stärker. Je mehr Wachstum erfüllt ist, desto stärker wird es („Flow“). Das Unternehmen sollte alle drei Ebenen jederzeit ermöglichen.</p>
+
+<h3>Zwei-Faktoren-Theorie (Herzberg)</h3>
+<div class="grid2">
+<div class="box" style="background:var(--mos);border:0"><b>Motivatoren</b> machen <b>zufrieden</b>. Sie hängen direkt mit der <b>Tätigkeit</b> zusammen.<ul><li>Leistungserfolg</li><li>Anerkennung</li><li>Arbeitsinhalt</li><li>Verantwortung</li><li>Aufstieg</li><li>Entfaltungsmöglichkeiten</li></ul></div>
+<div class="box t"><b>Hygienefaktoren</b> verhindern nur <b>Unzufriedenheit</b>. Sie betreffen den <b>Rahmen</b> der Arbeit.<ul><li>Bezahlung</li><li>Arbeitsplatzbedingungen</li><li>Arbeitsplatzsicherheit</li><li>Status und Ansehen</li><li>Führungsstil der Führungskraft</li><li>Unternehmenspolitik</li></ul></div>
+</div>
+<div class="ex"><b>Bild zum Merken (Zusatz)</b>Hygienefaktoren sind wie Zähneputzen: Wenn du es nicht tust, hast du ein Problem. Wenn du es tust, bist du deswegen aber nicht glücklich. Glücklich machen erst die Motivatoren: eine spannende Aufgabe, Lob, Verantwortung.</div>
+<p><b>Konsequenz:</b> Aufgaben anreichern und mehr Selbstständigkeit geben, dabei die Rahmenbedingungen trotzdem in Ordnung halten.</p>
+<div class="trap"><b>Fangfalle:</b> Bezahlung ist ein <b>Hygienefaktor</b>, kein Motivator. Auch Führungsstil und Status sind Hygienefaktoren. Anerkennung ist ein Motivator.</div>
+<div class="box sort" id="sortHerz"></div>
+
+<h3>Gelernte Bedürfnisse (McClelland)</h3>
+<div class="scroll"><table class="stack">
+<thead><tr><th>Motiv</th><th>bedeutet</th><th>so motivierst du (Zusatz)</th></tr></thead>
+<tbody>
+<tr><td>Leistungsmotiv</td><td>etwas leisten und stolz darauf sein</td><td>Aufgabe, die fordert, aber machbar ist</td></tr>
+<tr><td>Zugehörigkeitsmotiv</td><td>Teil einer Gruppe sein</td><td>Teamarbeit, gemeinsame Events</td></tr>
+<tr><td>Machtmotiv</td><td>aufsteigen, Einfluss auf andere, Arbeit selbst gestalten</td><td>Projektleitung, Aufstiegschancen</td></tr>
+</tbody></table></div>
+
+<h3>Job-Characteristics-Modell (Hackman/Oldham)</h3>
+<p>Welche Merkmale machen eine Aufgabe motivierend? Probier die Regler aus. Setz Autonomie oder Rückmeldung auf 1 und schau, was passiert.</p>
+<div class="grid2">
+<div class="box" id="hoSl"></div>
+<div class="box t" id="hoOut"></div>
+</div>
+<p style="font-size:14px;color:var(--mute)">Die Formel ist Zusatz zum Verstehen: Motivationspotenzial = (Vielfalt + Ganzheitlichkeit + Bedeutsamkeit) / 3 × Autonomie × Rückmeldung. Weil multipliziert wird, zieht ein schwacher Faktor alles nach unten.</p>
+<div class="scroll"><table class="stack">
+<thead><tr><th>Merkmal</th><th>bedeutet</th><th>führt zu</th></tr></thead>
+<tbody>
+<tr><td>Anforderungsvielfalt</td><td>je abwechslungsreicher, desto besser</td><td>erlebte Wichtigkeit</td></tr>
+<tr><td>Ganzheitlichkeit</td><td>möglichst viele Arbeitsschritte selbst machen</td><td>erlebte Wichtigkeit</td></tr>
+<tr><td>Bedeutsamkeit</td><td>Wichtigkeit für das Leben und die Arbeit anderer</td><td>erlebte Wichtigkeit</td></tr>
+<tr><td>Autonomie</td><td>Freiraum bei der Ausführung</td><td>erlebte Verantwortung</td></tr>
+<tr><td>Rückmeldung</td><td>Wissen über die eigenen Ergebnisse</td><td>Wissen um die Ergebnisse</td></tr>
+</tbody></table></div>
+<div class="trap"><b>Merke:</b> Ist einer der drei Zustände (Wichtigkeit, Verantwortung, Wissen um Ergebnisse) negativ, ist das Motivationspotenzial <b>null</b>.</div>
+
+<h3>Motivationsmodell (Porter/Lawler)</h3>
+<p>Wie hängen Motivation, Leistung und Zufriedenheit zusammen?</p>
+<div class="chain">
+<div><b>1 Anstrengung</b>hängt ab vom <b>Wert der Belohnung</b> und davon, wie <b>wahrscheinlich</b> sie kommt</div>
+<div><b>2 Leistung</b>hängt zusätzlich ab von Fähigkeiten, Persönlichkeit, Rollenwahrnehmung</div>
+<div><b>3 Belohnung</b>intrinsisch (Erfolgserlebnis) oder extrinsisch (Bezahlung)</div>
+<div><b>4 Zufriedenheit</b>nur, wenn die Belohnung als <b>angemessen</b> erlebt wird</div>
+</div>
+<p>Motiviert ist man, wenn man glaubt: <b>Mehr Anstrengung → mehr Leistung → gewünschte Belohnung.</b> Diese Einschätzung ist subjektiv.</p>
+<div class="ex"><b>Zusatz-Beispiel</b>Du lernst die ganze Nacht (Anstrengung), schreibst einen Einser (Leistung), bekommst Lob (Belohnung). Hat dein Freund für einen Dreier dasselbe Lob bekommen, fühlt sich das unfair an, und du bist nicht zufrieden.</div>
+<p><b>Kritik (Reinhard K. Sprenger):</b> Motivieren heiße nur die „fünf großen B“: <b>Belohnen, Belobigen, Bestechen, Bedrohen, Bestrafen</b>.</p>
+</section>
+
+<!-- ================= FÄLLE ================= -->
+<section class="view" id="v-faelle">
+<h2>Fälle lösen</h2>
+<p class="lead">Jeden Fall löst du in drei Schritten. Schreib im Test alle drei hin, jeweils mit Fachbegriff.</p>
+<div class="kv">
+<div><b>1 Problem</b>Was läuft schief? Nimm das Signal aus dem Text, zB „macht viele Fehler“.</div>
+<div><b>2 Modell</b>Welches Modell erklärt das? Mit Namen, zB „Herzberg: Motivatoren fehlen“.</div>
+<div><b>3 Mittel</b>Was soll die Führungskraft tun? Führungsinstrumente, mit dem Modell begründet.</div>
+</div>
+<div class="ex"><b>Musterantwort-Satz (Zusatz)</b>„Das Problem ist, dass … (Signal). Laut … (Modell) liegt das daran, dass … (Fachbegriff). Die Führungskraft sollte daher … (Instrument), weil … .“</div>
+
+<h3>Fall-Trainer: Welches Modell passt?</h3>
+<div class="box" id="trainer"></div>
+
+<h3>Signal → Modell → Mittel</h3>
+<div class="scroll"><table class="stack">
+<thead><tr><th>Signal im Fall</th><th>Modell</th><th>Warum es nicht funktioniert</th><th>Mittel</th></tr></thead>
+<tbody id="sigTab"></tbody></table></div>
+
+<h3>Übungsfälle mit Musterlösung</h3>
+<p>Fälle 1–8 aus dem Buch, 9–11 Klinik-Fälle. Erst selbst lösen, dann aufklappen.</p>
+<div id="caseList"></div>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section class="view" id="v-quiz">
+<h2>Quiz</h2>
+<div class="row" style="margin-bottom:8px">
+<label for="qFilter" style="font-weight:600">Thema</label>
+<select id="qFilter"><option value="all">alles</option><option value="mk">Marketing</option><option value="fu">Führung</option><option value="mo">Motivation</option></select>
+<button id="qRestart">Neu mischen</button>
+</div>
+<div class="box" id="quizBox"></div>
+</section>
+
+<!-- ================= KARTEN ================= -->
+<section class="view" id="v-karten">
+<h2>Karteikarten</h2>
+<div class="row" style="margin-bottom:12px">
+<label for="cFilter" style="font-weight:600">Stapel</label>
+<select id="cFilter"><option value="all">alles</option><option value="mk">Marketing</option><option value="fu">Führung</option><option value="mo">Motivation</option><option value="weak">nur „noch nicht“</option></select>
+<span class="bar" id="cInfo"></span>
+</div>
+<div class="card" id="card" tabindex="0" role="button" aria-label="Karte umdrehen"></div>
+<div class="row" style="margin-top:12px;justify-content:space-between">
+<button id="cPrev">Zurück</button>
+<div class="row"><button id="cNo">Noch nicht</button><button id="cYes" class="pri">Kann ich</button></div>
+</div>
+<p style="font-size:14px;color:var(--mute)">Tippe auf die Karte zum Umdrehen. Tastatur: Leertaste umdrehen, Pfeil rechts weiter.</p>
+</section>
+
+<!-- ================= CHECK ================= -->
+<section class="view" id="v-check">
+<h2>Kann ich das ohne Nachschauen?</h2>
+<p class="lead">Hak nur ab, was du wirklich frei erklären kannst. Der Fortschritt erscheint auf der Startseite.</p>
+<div class="grid2">
+<div class="box chk" id="chkMk"><h3 style="margin-top:0;color:var(--mk)">Marketing</h3></div>
+<div class="box chk" id="chkFu"><h3 style="margin-top:0;color:var(--fu)">Führung &amp; Motivation</h3></div>
+</div>
+<h3>Alle Fangfallen auf einen Blick</h3>
+<div class="grid2">
+<div class="box"><b style="color:var(--mk)">Marketing</b><ul>
+<li>USP = <b>ein möglicher</b> Ansatz der Positionierung</li>
+<li>Erbauung = ästhetisch, Geltung = sozial</li>
+<li>Fahrspaß ist Zusatznutzen</li>
+<li>Ressourcen auf <b>beiden</b> Marktseiten begrenzt</li>
+<li>Engpass beim Absatzmarkt, nicht bei der Produktion</li>
+<li>Käufermarkt = Angebot &gt; Nachfrage</li>
+<li>gegenwärtige <b>und potenzielle</b> Abnehmer</li>
+<li>relativer Marktanteil = zum größten Konkurrenten</li>
+<li>Panel = laufende Primärforschung</li>
+<li>eigene Verkaufszahlen = Sekundärforschung (intern)</li>
+<li>„Produkt deiner Wahl“: kein Folienprodukt</li>
+</ul></div>
+<div class="box"><b style="color:var(--fu)">Führung &amp; Motivation</b><ul>
+<li>Bezahlung, Führungsstil, Status = Hygienefaktoren</li>
+<li>Grid: erste Zahl Aufgabe, zweite Mensch</li>
+<li>M2 überzeugen, M3 partizipieren</li>
+<li>ERG ist keine Stufenpyramide</li>
+<li>Hackman/Oldham: ein Zustand negativ → Potenzial null</li>
+<li>Porter/Lawler: Zufriedenheit nur bei angemessener Belohnung</li>
+<li>autoritär ist im Notfall situativ richtig</li>
+<li>MbO = Ziele gemeinsam <b>vereinbaren</b>, nicht vorgeben</li>
+<li>LMX: In-Group meist der Führungskraft ähnlich</li>
+</ul></div>
+</div>
+<p><button id="chkReset">Häkchen zurücksetzen</button></p>
+</section>
+
+</main>
+
+<script>
+{
+const $=s=>document.querySelector(s);
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+
+/* ---------- Nutzen examples ---------- */
+const NU=[
+{n:"Auto (Folie)",r:["Transport von A nach B","Fahrspaß","sportliches Design","soziale Anerkennung durch das teure, exklusive Auto"],note:"Folienbeispiel: im Test bei „Produkt deiner Wahl“ nicht verwenden."},
+{n:"Winterjacke",r:["schützt vor Kälte, Wind und Nässe","viele praktische Taschen, trotz Wärme leicht und bequem","schöner Schnitt, ansprechendes Design","bekanntes Markenlogo (zB Canada Goose) bringt Anerkennung"],note:"Beispiel aus der Zusammenfassung zur AA 23.9."},
+{n:"PlayStation 5",r:["Videospiele spielen: Unterhaltung, Zeitvertreib","online mit Freunden spielen, schnelle SSD, Streaming","futuristisches Design in Weiß-Schwarz, hochwertiger Controller","Zugehörigkeit zur Gaming-Community, mitreden können"],note:"Deine Lösung aus der AA 23.9."},
+{n:"Wasserflasche",r:["Wasser transportieren und trinken","hält 24 h kalt, auslaufsicher","schöne Farbe, edles Material","Trend-Marke, die alle auf Instagram zeigen"],note:"Zusatz-Beispiel."},
+{n:"Kopfhörer",r:["Musik hören","Noise-Cancelling, lange Akkulaufzeit","elegantes Design, weiche Polster","teure Marke zeigt Status in der Schule"],note:"Zusatz-Beispiel."}];
+let nuI=1;
+const drawNu=()=>{
+$("#nutzenBtns").innerHTML=NU.map((x,i)=>`<button data-i="${i}" class="${i===nuI?'pri':''}">${x.n}</button>`).join('');
+const L=["Grundnutzen","Zusatznutzen","Erbauungsnutzen","Geltungsnutzen"];
+$("#nutzenTab").innerHTML="<tbody>"+NU[nuI].r.map((v,i)=>`<tr><td>${L[i]}</td><td>${v}</td></tr>`).join('')+"</tbody>";
+$("#nutzenNote").textContent=NU[nuI].note};
+$("#nutzenBtns").addEventListener("click",e=>{const b=e.target.closest("button");if(b){nuI=+b.dataset.i;drawNu()}});
+drawNu();
+
+/* ---------- generic sort game ---------- */
+const sortGame=(el,title,cats,items)=>{
+let st={};
+const draw=()=>{
+const done=Object.keys(st).length,ok=Object.values(st).filter(Boolean).length;
+el.innerHTML=`<div class="row" style="justify-content:space-between"><b>${title}</b><span class="score">${ok} / ${items.length} richtig</span></div>`+
+items.map((it,i)=>{const s=st[i];return `<div class="it ${s===undefined?'':s?'r':'w'}"><div>${it[0]}${s!==undefined?`<div class="fb">${s?'Richtig':'Falsch'}: ${cats[it[1]]}${it[2]?' · '+it[2]:''}</div>`:''}</div><div class="row">${cats.map((c,j)=>`<button data-i="${i}" data-j="${j}">${c}</button>`).join('')}</div></div>`}).join('')+
+(done===items.length?`<p><button data-reset="1">Nochmal</button></p>`:'')};
+el.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.reset){st={};draw();return}const i=+b.dataset.i;if(st[i]!==undefined)return;st[i]=items[i][1]===+b.dataset.j;draw()});
+draw()};
+sortGame($("#sortNutzen"),"Übung: Welche Nutzenart?","[\"Grund\",\"Zusatz\",\"Erbauung\",\"Geltung\"]".split(',')
+); 
+};
+
+</script>
+</body>
+</html>
